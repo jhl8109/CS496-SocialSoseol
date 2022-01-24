@@ -5,6 +5,7 @@ import {Route, Routes, BrowserRouter, useRoutes, Router} from 'react-router-dom'
 import Navbar from './component/Navbar';
 import PostList from './component/table/PostList';
 import Poem from './component/Poem';
+import Paging from './component/Pagination';
 
 function App() {
   return ( 
@@ -13,7 +14,7 @@ function App() {
       <Routes>  
         <Route path="/" element={<Sign />} />
         <Route path="/novel" element={<Novel/>} />
-        <Route path='/relay/novel' element={<PostList/>}/>
+        <Route path='/relay/novel' element={<Paging/>}/>
         <Route path='/poem' element={<Poem/>}/>
       </Routes>
     </BrowserRouter>
