@@ -70,7 +70,6 @@ function SignIn(props) {
             for (let x in obj) {
                 index.push(x);
             }
-            /* 파싱 다시 해야함 */
             if (obj.message === "Id doesn't exists") {
                 console.log("id err");
                 setIdErr(true);

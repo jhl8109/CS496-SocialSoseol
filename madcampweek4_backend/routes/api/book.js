@@ -63,4 +63,49 @@ router.post(
     }
 );
 
+//CATEGORY 만족하는 book 반환(최신순)
+router.get(
+    "/categorybook",
+    async (req, res) => {
+        try{
+            let categorybook = await Book.find({category:req.query.category}).sort({bookid:'desc'});
+            if(categorybook.length==0){
+                return res
+                    .status(400)
+                    .json({ errors: [{ msg: "No such book exists" }] });
+            }
+            res
+                .status(200)
+                .json({
+                    categorybook
+                });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Server Error");
+        }
+    }
+);
+//CATEGORY 만족하는 book 반환(좋아요)
+router.get(
+    "/categorybooklike",
+    async (req, res) => {
+        try{
+            let categorybook = await Book.find({category:req.query.category}).sort({likes:'desc'});
+            if(categorybook.length==0){
+                return res
+                    .status(400)
+                    .json({ errors: [{ msg: "No such book exists" }] });
+            }
+            res
+                .status(200)
+                .json({
+                    categorybook
+                });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Server Error");
+        }
+    }
+);
+
 module.exports = router;
