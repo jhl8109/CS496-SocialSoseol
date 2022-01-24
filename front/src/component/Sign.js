@@ -20,10 +20,7 @@ function SignIn(props) {
 
 
     useEffect(()=>{
-        // axios.get('auth').then(response=> {
-        //     console.log(response);
-        // })
-        fetch("http://143.248.75.68:80/auth", {credentials : 'include'})
+        fetch("/auth", {credentials : 'include'})
         .then(response => response.text())
         .then(result => {console.log(result)})
         .catch(error => console.log('error', error));
@@ -59,11 +56,10 @@ function SignIn(props) {
         body: JSON.stringify({
             "loginid":idValue,
             "password":pwValue,
-        }),
-        credentials : true
+        })
         };
         var obj = new Object();
-        fetch("http://143.248.75.68:80/login", requestOptions)
+        fetch("/login", requestOptions)
         .then(response => response.text())
         .then(result => {
             console.log(result); 
@@ -154,7 +150,7 @@ function SignUp(props) {
             credentials: "same-origin"
             };
 
-        fetch("http://143.248.75.68:80/register", requestOptions)
+        fetch("/register", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
