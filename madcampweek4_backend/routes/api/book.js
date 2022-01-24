@@ -1,12 +1,13 @@
 const express = require("express");
 const Book = require("../../models/book");
+const Node = require("../../models/node");
 const router = express.Router();
 
 router.post(
     "/book",
     async (req, res) => {
 
-        const {bookid, bookname, writer, category, view, likes} = req.body;
+        const {bookid, bookname, writer, category, view, likes,content} = req.body;
 
         try {
             let book = await Book.findOne({ bookid });
@@ -23,7 +24,8 @@ router.post(
                 writer, 
                 category, 
                 view,
-                likes
+                likes,
+                content
             });
 
             await book.save();
@@ -101,6 +103,32 @@ router.get(
                 .json({
                     categorybook
                 });
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Server Error");
+        }
+    }
+);
+//Book의 첫 노드 내용 반환
+router.get(
+    "/getfirstnode",
+    async (req, res) => {
+        try{
+            let getfirstnode = await Node.findOne({ bookfrom:req.query.bookfrom, postid:0});
+            console.log(getfirstnode.length);
+
+            if(getfirstnode.length==0){
+                return res
+                    .status(400)
+                    .json({ errors: [{ msg: "Next first node doesn't exists" }] });
+            }
+
+            res
+            .status(200)
+            .json({
+                content:getfirstnode.content
+            });
+
         } catch (error) {
             console.error(error.message);
             res.status(500).send("Server Error");

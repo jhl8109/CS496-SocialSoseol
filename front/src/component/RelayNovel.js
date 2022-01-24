@@ -22,20 +22,10 @@ function RelayNovel(props) {
         setState(arr);
   };
 
-  function onUpdateItemFalse (){
-    let arr = new Array();
-    for (let i = 0; i < state.length;i++) {
-        arr.push(false);
-    }
-    setState(arr);
-  }
-
   function gotoItem (a) {
       console.log(a);
   };
     const showNovelList = novelList.map( (novel, index) => {
-        console.log(index);
-        console.log(state);
         return (novelList[index] !== undefined ?
                 <div key={index}
                 className={clsx('section-content', {
@@ -50,26 +40,16 @@ function RelayNovel(props) {
                         alt=""
                     />
                     <h2 className="item__title">
-                        밤 눈
+                        {novel.bookname}
                     </h2>
                     </div>
 
                     <div className="item__back">
                     <h3 className="item__subtitle">
-                        김광석
+                        {novel.writer}
                     </h3>
                     <p className="item__desc">
-                        겨울 밤, 
-                        노천역에서
-                        전동차를 기다리며 우리는
-                        서로의 집이 되고 싶었다
-                        안으로 들어가
-                        온갖 부끄러움 감출 수 있는
-                        따스한 방이 되고 싶었다
-                        눈이 내려도
-                        바람이 불어도
-                        날이 밝을 때까지 우리는
-                        서로의 바깥이 되고 싶었다
+                        {novel.content}
                     </p>
                     </div>
 
