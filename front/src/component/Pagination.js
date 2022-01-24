@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Pagination.css";
 import { Pagination, Typography, Grid } from "@mui/material";
-import RelayPoem from './RelayPoem';
+import RelayNovel from './RelayNovel';
 
 function Paging() {
 
-  const [poemList,setPoemList] =useState([0,1,2,3,4,5,6,7,8,9,10,11,12]);
+  const [novelList,setNovelList] =useState([0,1,2,3,4,5,6,7,8,9,10,11,12]);
   const [state, setState] = useState([false,false,false,false,false,false]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
@@ -18,7 +18,7 @@ function Paging() {
     <div className="App">
         {
             <div>
-                {<RelayPoem poemList={poemList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setPoemList={setPoemList} 
+                {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
                 state={state} setState={setState} page = {page} setPage = {setPage}/>}
             </div>
         }
@@ -32,7 +32,7 @@ function Paging() {
             // 20/6 = 4
             // para arredondar uso a função do JS Math.ceil() para cima
             // ou Math.floor() para baixo
-            Math.ceil(poemList.length / itemsPerPage)
+            Math.ceil(novelList.length / itemsPerPage)
           }
           onChange={handleChangePage}
         />

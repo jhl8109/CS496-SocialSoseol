@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import './RelayPoem.css'
+import './RelayNovel.css'
 
-function RelayPoem(props) {
+function RelayNovel(props) {
     const {page, setPage} = props;
   const {statep, setStatep} = props;
   const {state, setState} = props;
 //   const [state, setState] = useState([false,false,false,false,false,false]);
-  const {poemList,setPoemList} = props;
+  const {novelList,setNovelList} = props;
 
   const itemsPerPage = 6;
 
@@ -33,16 +33,16 @@ function RelayPoem(props) {
   function gotoItem (a) {
       console.log(a);
   };
-    const showPoemList = poemList.map( (poem, index) => {
+    const showNovelList = novelList.map( (novel, index) => {
         console.log(index);
         console.log(state);
-        return (poemList[index] !== undefined ?
+        return (novelList[index] !== undefined ?
                 <div key={index}
                 className={clsx('section-content', {
                     'is-active': state[index],
                 })}
                 >
-                <div className="item" onClick={() => gotoItem(poemList[index])}>
+                <div className="item" onClick={() => gotoItem(novelList[index])}>
                     <div className="item__front">
                     <img
                         className="item__media"
@@ -90,11 +90,11 @@ function RelayPoem(props) {
     )
   return(
     <div className='grid-container'>
-        {showPoemList}
+        {showNovelList}
     </div>
   )
 }
 
 
 
-export default RelayPoem
+export default RelayNovel
