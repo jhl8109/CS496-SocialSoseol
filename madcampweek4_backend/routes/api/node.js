@@ -69,6 +69,7 @@ router.get(
     "/getnextnode",
     async (req, res) => {
         try{
+            console.log(req.query);
             let getnextnode = await Node.find({ bookfrom:req.query.bookfrom ,postid:req.query.postid });
             console.log(getnextnode.length);
 
