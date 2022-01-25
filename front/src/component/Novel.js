@@ -7,8 +7,6 @@ import {useParams} from 'react-router-dom';
 
 
 function Novel(props) {
-    var bookfrom = 1;
-    var postid = 0;
     let {id}= useParams();
     const [novelList,setNovelList] = useState([]);
     const [nodeList, setNodeList] = useState([]);

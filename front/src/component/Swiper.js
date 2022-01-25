@@ -53,16 +53,19 @@ function MainSwipe(props) {
         getNodeList(0);
     },[])
     useEffect(()=>{
-        console.log(novelList);
+        //console.log(novelList);
     },[novelList])
 
-    const getNodeList = (index) => {
-        if (novelList.length !== 0) {
-            console.log(novelList);
-            var tmp = novelList[novelList.length].nodeid;
-        } else tmp = index;
-        console.log(tmp);
+    const getNodeList = () => {
         
+        if (novelList.length != 0) {
+            console.log(novelList);
+            var tmp = novelList[novelList.length-1].nodeid;
+        } else {
+            tmp = 0;
+        }
+        console.log("zzzz",novelList.length);
+        console.log(tmp);
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -76,11 +79,10 @@ function MainSwipe(props) {
         .then(response => response.text())
         .then(result => {
             console.log(result);
-            result = JSON.parse(result);
-            
-            var resArr = result.getnextnode;
+            var res = JSON.parse(result);
+            var resArr = res.getnextnode;
             setBookId(resArr[0].bookfrom);            
-            setNodeList(result.getnextnode);
+            setNodeList(res.getnextnode);
         })
         .catch(error => console.log('error', error));
     }
@@ -93,11 +95,11 @@ function MainSwipe(props) {
     )
 
     function makeNovel(index) {
-        setNodeId(nodeList[index].nodeid);
         setNovelList([...novelList,nodeList[index]]);
-        var idIndex = nodeList[index].postid+1;
+        console.log(setNovelList);
+        setNodeId(nodeList[index].nodeid);
         setNodeList([]);
-        getNodeList(idIndex);
+        getNodeList();
     }
 
     SwiperCore.use([Navigation]);

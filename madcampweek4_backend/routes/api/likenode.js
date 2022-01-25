@@ -55,7 +55,7 @@ router.delete(
 
         try {
             let likenode = await Likenode.findOne({ nodefrom:req.query.nodefrom, writer:req.query.writer });
-            let node = await node.findOne({ nodeid:req.query.nodefrom})
+            let node = await Node.findOne({ nodeid:req.query.nodefrom})
 
             if (!likenode) {
                 return res
