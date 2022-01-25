@@ -1,3 +1,11 @@
 .App {
     font-family: sans-serif;
   }
+
+.Button{
+  display: flex;
+  float: right;   
+  margin-right: 10%;
+  font-size: 24px;
+  transform: scale(2.0);
+}

@@ -24,7 +24,7 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("http://localhost:80/categorybook?category=릴레이시", requestOptions)
+    fetch("http://localhost:80/categorybook?category=개인시", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);
@@ -57,18 +57,13 @@ function Paging() {
       <Pagination
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
           count={
-            // aqui eu divido o tamanho do array pela quantidade de itens exibidos
-            // mas pense comigo
-            // 20/6 = 3.333...
-            // logo preciso arrendodar para cima o número de páginas
-            // 20/6 = 4
-            // para arredondar uso a função do JS Math.ceil() para cima
-            // ou Math.floor() para baixo
             Math.ceil(poemList.length / itemsPerPage)
           }
           onChange={handleChangePage}
         />
-      
+        <div className="Button">
+            <button>글쓰기</button>
+        </div> 
     </div>
   );
 }

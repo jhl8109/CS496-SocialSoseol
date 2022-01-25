@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./Pagination.css";
+import "./PaginationPoem.css";
 import { Pagination, Typography, Grid } from "@mui/material";
-import RelayNovel from './RelayNovel';
+import PersonalPoem from './PersonalPoem';
 import { set } from "mongoose";
 
 function Paging() {
-  const [novelList,setNovelList] =useState([]);
+  const [poemList,setPoemList] =useState([]);
   const [contentList,setContentList] =useState([]);
   const [state, setState] = useState([false,false,false,false,false,false]);
   const [page, setPage] = useState(1);
@@ -24,14 +24,14 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("http://localhost:80/categorybook?category=릴레이소설", requestOptions)
+    fetch("http://localhost:80/categorybook?category=릴레이시", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);
       console.log(obj.categorybook);
-      setNovelList(obj.categorybook);
-      console.log("novelList");
-      console.log(novelList);
+      setPoemList(obj.categorybook);
+      console.log("poemList");
+      console.log(poemList);
       
     })  
     .catch(error => console.log('error', error));
@@ -50,23 +50,21 @@ function Paging() {
     <div className="App">
         {
             <div>
-                {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
+                {<PersonalPoem poemList={poemList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setPoemList={setPoemList} 
                 state={state} setState={setState} page = {page} setPage = {setPage}/>}
             </div>
         }
       <Pagination
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
           count={
-            Math.ceil(novelList.length / itemsPerPage)
+            Math.ceil(poemList.length / itemsPerPage)
           }
           onChange={handleChangePage}
         />
-      <div className="Button">
-        <button>글쓰기</button>
-      </div>
+        <div className="Button">
+            <button>글쓰기</button>
+        </div> 
     </div>
-    
-
   );
 }
 

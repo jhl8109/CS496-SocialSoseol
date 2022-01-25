@@ -7,6 +7,8 @@ import PostList from './component/table/PostList';
 import Poem from './component/Poem';
 import Paging from './component/Pagination';
 import PagingPoem from './component/PaginationPoem';
+import PagingPersonalNovel from './component/PaginationNovelPersonal';
+import PagingPersonalPoem from './component/PaginationPoemPersonal';
 
 function App() {
   return ( 
@@ -17,6 +19,8 @@ function App() {
         <Route path="/novel" element={<Novel/>} />
         <Route path='/relay/novel' element={<Paging/>}/>
         <Route path='/relay/poem' element={<PagingPoem/>}/>
+        <Route path='/personal/novel' element={<PagingPersonalNovel/>}/>
+        <Route path='/personal/poem' element={<PagingPersonalPoem/>}/>
       </Routes>
     </BrowserRouter>
   )
