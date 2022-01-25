@@ -36,7 +36,9 @@ function Paging() {
     .catch(error => console.log('error', error));
 },[])
   
- 
+ const writingPage = () => {
+   window.location.href = "/write/novel"
+ }
 
 
   function handleChangePage(event, value) {
@@ -60,10 +62,9 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-      <div className="Button">
-        <button>글쓰기</button>
-      </div></>
-
+        <button onClick={writingPage}>글쓰기</button>
+      </div>
+    </div></>
     
 
   );

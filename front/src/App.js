@@ -13,7 +13,7 @@ function App() {
   return ( 
     <BrowserRouter>
       <Navbar/>
-      <Routes>  
+      <Routes>
       <Route path="/" element={<Sign />} />
         <Route path="/relay/novel/:id" element={<Novel/>} />
         <Route path='/relay/poem/:id' />

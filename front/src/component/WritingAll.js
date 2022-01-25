@@ -1,8 +1,8 @@
 import React from 'react';
-import {ToggleButtonGroup, ToggleButton, Box } from '@mui/material';
+import {ToggleButtonGroup, ToggleButton, Grid, Box } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 import WritePaper from './WritePaper';
-import { useParams } from 'react-router-dom';
+import WritePaperAll from './WritePaperAll';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,8 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function Writing(props) {
     const [status, setStatus] = React.useState("action");
-    const {category} = useParams();
-    console.log(category);
+
     const handleStatus = (event, newStatus) => {
         if (newStatus === null) {
           return;
@@ -41,6 +40,7 @@ function Writing(props) {
         console.log(newStatus);
       };
 
+        
   return (
       <div style={{display:"flex", justifyContent:"center", alignItems:"center",  flexDirection:"column"}}>
             <Box className={useStyles.filter}>
@@ -48,7 +48,7 @@ function Writing(props) {
                     <ToggleButton className={useStyles.btnFilter} value="action">
                         액션
                     </ToggleButton>
-                    <ToggleButton className={useStyles.btnFilter} value="thriller">
+                    <ToggleButton className={useStyles.btnFilter} value="scared">
                         공포/스릴러
                     </ToggleButton>
                     <ToggleButton className={useStyles.btnFilter} value="SF">
@@ -65,9 +65,12 @@ function Writing(props) {
                     </ToggleButton>
                 </ToggleButtonGroup>
           </Box>
-          <WritePaper status = {status} category = {category}/>          
+          <WritePaperAll/>
+            
+          
       </div>
+    
   )
 };
-//개인 소설, 개인 시, 릴레이 소설, 릴레이 시
+
 export default Writing;

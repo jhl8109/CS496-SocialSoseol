@@ -29,7 +29,7 @@ router.post(
 
             await node.save();
 
-            res.send("Success");
+            res.send(node);
             console.log("success in console");
 
         } catch (error) {

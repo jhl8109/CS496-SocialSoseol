@@ -7,7 +7,6 @@ import { Card,Typography, CardHeader,CardContent, IconButton, Grid } from '@mui/
 import {AiOutlineHeart, AiTwotoneHeart} from 'react-icons/ai';
 
 function CustomCard(props) {
-
     const [heart,setHeart] = useState(false);   
 
     const cardStyle = {'margin' : '10px', 'width' : '95%'};
@@ -42,6 +41,7 @@ function CustomCard(props) {
 }
 
 function MainSwipe(props) {
+    const {id} = props;
     const {novelList, setNovelList} = props;
     const {nodeList,setNodeList} = props;
     const [nodeId, setNodeId] = useState(0);
@@ -50,10 +50,26 @@ function MainSwipe(props) {
 
     useEffect(()=>{
         /* postman */
+        getNodeList(0);
+    },[])
+    useEffect(()=>{
+        //console.log(novelList);
+    },[novelList])
+
+    const getNodeList = () => {
+        
+        if (novelList.length != 0) {
+            console.log(novelList);
+            var tmp = novelList[novelList.length-1].nodeid;
+        } else {
+            tmp = 0;
+        }
+        console.log("zzzz",novelList.length);
+        console.log(tmp);
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = '{"bookfrom":1, "postid":0}';
+        var raw = `{"bookfrom":${id}, "postid":${tmp}}`;
         const obj = JSON.parse(raw);
 
         var url = new URL("http://localhost:80/getnextnode"),
@@ -63,14 +79,13 @@ function MainSwipe(props) {
         .then(response => response.text())
         .then(result => {
             console.log(result);
-            result = JSON.parse(result);
-            var resArr = result.getnextnode;
+            var res = JSON.parse(result);
+            var resArr = res.getnextnode;
             setBookId(resArr[0].bookfrom);            
-            setNodeList(result.getnextnode);
+            setNodeList(res.getnextnode);
         })
         .catch(error => console.log('error', error));
-        setNodeList([{writer:"jeho",content:"안녕하세요."}]);
-    },[])
+    }
 
     const showNodeList = nodeList.map((card, index) => {
         return (nodeList[index] !== undefined ? <SwiperSlide key={index} onClick={()=>makeNovel(index)} > 
@@ -80,10 +95,11 @@ function MainSwipe(props) {
     )
 
     function makeNovel(index) {
-        console.log("hello");
-        setNodeId(nodeList[index].nodeid);
         setNovelList([...novelList,nodeList[index]]);
+        console.log(setNovelList);
+        setNodeId(nodeList[index].nodeid);
         setNodeList([]);
+        getNodeList();
     }
 
     SwiperCore.use([Navigation]);
