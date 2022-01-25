@@ -12,7 +12,7 @@ const bookSchema = mongoose.Schema({
         type: String
     },
     writer:{
-        type: Number
+        type: String
     },
     category:{
         type: String
@@ -24,6 +24,10 @@ const bookSchema = mongoose.Schema({
     likes:{
         type: Number,
         default: 0
+    },
+    content:{
+        type: String,
+        default:""
     }
 })
 
