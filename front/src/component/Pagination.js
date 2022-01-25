@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Pagination.css";
 import { Pagination, Typography, Grid } from "@mui/material";
 import RelayNovel from './RelayNovel';
-import { set } from "mongoose";
 
 function Paging() {
   const [novelList,setNovelList] =useState([]);
