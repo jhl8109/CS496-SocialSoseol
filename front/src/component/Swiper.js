@@ -8,9 +8,7 @@ import {AiOutlineHeart, AiTwotoneHeart} from 'react-icons/ai';
 
 function CustomCard(props) {
 
-    const [heart,setHeart] = useState(false);
-    
-    
+    const [heart,setHeart] = useState(false);   
 
     const cardStyle = {'margin' : '10px', 'width' : '95%'};
 
@@ -45,7 +43,7 @@ function CustomCard(props) {
 
 function MainSwipe(props) {
     const {novelList, setNovelList} = props;
-    const [nodeList,setNodeList] = useState([]);
+    const {nodeList,setNodeList} = props;
     const [nodeId, setNodeId] = useState(0);
     const [bookId, setBookId] = useState(0);
     const cardStyle = {'margin' : '10px', 'width' : '600px'};
