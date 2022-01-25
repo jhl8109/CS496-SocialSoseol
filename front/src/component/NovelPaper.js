@@ -29,7 +29,7 @@ useEffect(()=>{
 useEffect(()=>{
     let arr = new Array();
     for (var i = 0; i < novelList.length; i++) {
-        arr.push(true);
+        arr.push(false);
     }
     setHeart(arr);
 },[novelList])

@@ -52,12 +52,17 @@ function MainSwipe(props) {
         /* postman */
         getNodeList(0);
     },[])
+    useEffect(()=>{
+        console.log(novelList);
+    },[novelList])
 
     const getNodeList = (index) => {
         if (novelList.length !== 0) {
-            var tmp = novelList[novelList.length-1].nodeid;
+            console.log(novelList);
+            var tmp = novelList[novelList.length].nodeid;
         } else tmp = index;
         console.log(tmp);
+        
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
