@@ -16,8 +16,17 @@ useEffect(()=>{
         arr.push(false);
     }
     setHeart(arr);
-    console.log(arr);
+    console.log(heart);
 },[])
+useEffect(()=>{
+    let arr = new Array();
+    for (var i = 0; i < novelList.length; i++) {
+        arr.push(false);
+    }
+    setHeart(arr);
+    console.log(heart);
+},[novelList])
+
 
     function heartClick(e,index) {
         e.stopPropagation();
@@ -34,14 +43,12 @@ useEffect(()=>{
             <div key={index}>
                 <Accordion style = {cardStyle}>
                     <AccordionSummary title="Title 1">
-                        <div style = {{fontFamily:"title111", fontWeight:"bold", fontSize: "30px"}}>{card.subTitle}</div>
+                        <div style = {{fontFamily:"title111", fontWeight:"bold", fontSize: "30px"}}>{card.writer}</div>
                         <IconButton aria-label="settings" onClick={(e)=>heartClick(e,index)}>
                         {heart[index] === false?  <AiOutlineHeart/>: <AiTwotoneHeart color="red"/>}
                         </IconButton>
                     </AccordionSummary>  
                     <AccordionDetails style = {{fontFamily:"shy", fontWeight:"bold", fontSize:  "22px"}}>  
-                        <div>{card.writer}</div>    
-                        <br></br>   
                         {card.content}
                     </AccordionDetails>
                 </Accordion>

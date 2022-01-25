@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Pagination.css";
 import { Pagination, Typography, Grid } from "@mui/material";
 import RelayNovel from './RelayNovel';
-import { set } from "mongoose";
 
 function Paging() {
   const [novelList,setNovelList] =useState([]);
-  const [contentList,setContentList] =useState([]);
   const [state, setState] = useState([false,false,false,false,false,false]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
@@ -24,7 +22,7 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("http://localhost:80/categorybook?category=릴레이소설", requestOptions)
+    fetch("/categorybook?category=릴레이소설", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);
@@ -35,7 +33,6 @@ function Paging() {
       
     })  
     .catch(error => console.log('error', error));
-    
 },[])
   
  
