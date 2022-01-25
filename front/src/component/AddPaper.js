@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import ToggleButton from 'react-toggle-button'
 
 function AddPaper(props) {
+  const {id} = props;
   const paperStyle={padding : 20, height:'400px',width:"1000px", margin: "20px auto"};
   const btnStyle = {margin:'8px 0'}
   const textStyle = {margin:'8px 0'}
@@ -13,7 +14,7 @@ function AddPaper(props) {
   const {nodeList,setNodeList} = props
   const [toggle, setToggle] = useState(true)
   const [disabled, setDisabled] = useState(true);
-  let loginid, nickname,userlevel;
+  const [auth , setAuth] = useState({});
 
     
   useEffect(()=>{
@@ -21,9 +22,8 @@ function AddPaper(props) {
     .then(response => response.text())
     .then(result => {
       var res = JSON.parse(result);
-      loginid = res.loginid;
-      nickname = res.nickname;
-      userlevel = res.userlevel;
+      console.log(res.nickname);
+      setAuth(res);
     })
     .catch(error => console.log('error', error));
   },[])
@@ -55,26 +55,58 @@ function AddPaper(props) {
     let btnSubmit = (e) => {
       e.preventDefault();
       console.log(textValue);
+      
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({
-        "bookfrom": 1, // props로 book에서 클릭시 받아오기
-        "writer": nickname,
-        "content": textValue // db에 보낼 텍스트
-      });
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
+     
 
       if (toggle === true) { // 노드에 추가(세로)
+        var postid = 0;
+        if (novelList.length !== 0) postid = novelList[novelList.length-1].nodeid;
+        var raw = JSON.stringify({
+          "bookfrom": id, // props로 book에서 클릭시 받아오기
+          "postid" : postid,
+          "writer": auth.nickname,
+          "content": textValue // db에 보낼 텍스트
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
         
+        
+        fetch("/node", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          console.log(result)
+          var res = JSON.parse(result);
+          setNodeList([...nodeList,res]);
+        })
+        .catch(error => console.log('error', error));
+        
+        setTextValue("");
       } else { // 브랜치에 추가 (가로)
-        setNodeList([...nodeList,{"writer":nickname, "content": textValue}]);
+        var postid = 0;
+        postid = nodeList[0].postid;
+        var raw = JSON.stringify({
+          "bookfrom": id, // props로 book에서 클릭시 받아오기
+          "postid" : postid,
+          "writer": auth.nickname,
+          "content": textValue // db에 보낼 텍스트
+        });
+        
+  
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        setNodeList([...nodeList,{"writer":auth.nickname, "content": textValue}]);
         fetch("/node", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))

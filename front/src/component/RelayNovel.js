@@ -13,7 +13,8 @@ function RelayNovel(props) {
   const itemsPerPage = 6;
 
 
-  function onUpdateItem (a) {
+  function onUpdateItem (e,a) {
+    e.stopPropagation();
     let arr = new Array();
         for (let i = 0; i < state.length;i++) {
             console.log()
@@ -24,10 +25,10 @@ function RelayNovel(props) {
   };
 
   function gotoItem (a) {
-      console.log(a);
+    console.log(a.bookid);
+    window.location.href = `relay/novel/${a.bookid}`;
   };
     const showNovelList = novelList.map( (novel, index) => {
-        console.log(novel);
         return (novelList[index] !== undefined ?
                 <div key={index}
                 className={clsx('section-content', {
@@ -71,7 +72,7 @@ function RelayNovel(props) {
                     </p>
                     </div>
 
-                    <button className="item__button" onClick={() => onUpdateItem(index)}>
+                    <button className="item__button" onClick={(e) => onUpdateItem(e,index)}>
                     <svg viewBox="0 0 40 40" className="item__button__icon">
                         <path
                         id="reset"

@@ -1,21 +1,23 @@
 import MainSwipe from './Swiper';
 import NovelPaper from './NovelPaper';
 import AddPaper from './AddPaper';
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import Twittler from './comment_react'
+import {useParams} from 'react-router-dom';
 
 
 function Novel(props) {
     var bookfrom = 1;
     var postid = 0;
+    let {id}= useParams();
     const [novelList,setNovelList] = useState([]);
     const [nodeList, setNodeList] = useState([]);
     return (
         <div>
             <div style = {{display:"flex", flexDirection:"column", alignItems:"center"}} elevation={3}>
-                <NovelPaper novelList = {novelList} setNovelList = {setNovelList}/>
-                <MainSwipe novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList}/>
-                <AddPaper novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList}/>
+                <NovelPaper novelList = {novelList} setNovelList = {setNovelList} id = {id}/>
+                <MainSwipe novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
+                <AddPaper novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
                 <Twittler/>
             </div>
         </div>
