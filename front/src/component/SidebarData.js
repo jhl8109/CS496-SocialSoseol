@@ -9,19 +9,19 @@ export const SidebarData = [
     },
     {
         title: '릴레이 소설',
-        path: '/relay/novel',
+        path: '/novel',
         icon: <BsIcons.BsPersonBoundingBox />,
         cName: 'nav-text'
     },
     {
         title: '릴레이 시',
-        path: '/relay/poem',
+        path: '/poem',
         icon: <BsIcons.BsPersonBoundingBox />,
         cName: 'nav-text'
     },
     {
         title: '개인 소설',
-        path: '/personal/poem',
+        path: '/personal/novel',
         icon: <BsIcons.BsPersonBoundingBox />,
         cName: 'nav-text'
     },

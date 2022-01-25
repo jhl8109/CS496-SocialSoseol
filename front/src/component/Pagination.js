@@ -22,9 +22,10 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("/categorybook?category=릴레이소설", requestOptions)
+    fetch("http://localhost:80/categorybook?category=릴레이소설", requestOptions)
     .then(response => response.text())
     .then(result => {
+      console.log(result);
       obj = JSON.parse(result);
       console.log(obj.categorybook);
       setNovelList(obj.categorybook);
@@ -44,13 +45,14 @@ function Paging() {
   }
 
   return (
-    <div className="App">
+    <><div className="App">
         {
             <div>
                 {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
                 state={state} setState={setState} page = {page} setPage = {setPage}/>}
             </div>
         }
+      </div>
       <Pagination
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
           count={
@@ -60,8 +62,8 @@ function Paging() {
         />
       <div className="Button">
         <button>글쓰기</button>
-      </div>
-    </div>
+      </div></>
+
     
 
   );

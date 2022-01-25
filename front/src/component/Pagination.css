@@ -1,6 +1,8 @@
 .App {
-    font-family: sans-serif;
-  }
+  font-family: sans-serif;
+  display: flex;
+  position: relative;
+}
 
 .Button{
   display: flex;

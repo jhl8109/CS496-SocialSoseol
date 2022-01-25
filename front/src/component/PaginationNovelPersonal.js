@@ -47,13 +47,14 @@ function Paging() {
   }
 
   return (
-    <div className="App">
+    <><div className="App">
         {
             <div>
                 {<PersonalNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
                 state={state} setState={setState} page = {page} setPage = {setPage}/>}
             </div>
         }
+        </div>
       <Pagination
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
           count={
@@ -63,8 +64,7 @@ function Paging() {
         />
       <div className="Button">
         <button>글쓰기</button>
-      </div>
-    </div>
+      </div></>
     
 
   );
