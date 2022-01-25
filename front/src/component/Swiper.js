@@ -3,7 +3,7 @@ import SwiperCore, {Navigation } from "swiper";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import {Swiper, SwiperSlide} from "swiper/react";
-import { Card,Typography, CardHeader, CardMedia,CardContent, IconButton, Grid } from '@mui/material';
+import { Card,Typography, CardHeader,CardContent, IconButton, Grid } from '@mui/material';
 import {AiOutlineHeart, AiTwotoneHeart} from 'react-icons/ai';
 
 function CustomCard(props) {
@@ -46,6 +46,7 @@ function CustomCard(props) {
 function MainSwipe(props) {
     const {novelList, setNovelList} = props;
     const [nodeList,setNodeList] = useState([]);
+    const [nodeId, setNodeId] = useState(0);
     const [bookId, setBookId] = useState(0);
     const cardStyle = {'margin' : '10px', 'width' : '600px'};
 
@@ -54,17 +55,19 @@ function MainSwipe(props) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = '{"bookfrom":1, "postid":7}';
+        var raw = '{"bookfrom":1, "postid":0}';
         const obj = JSON.parse(raw);
 
-        var url = new URL("http://143.248.75.68:80/getnextnode"),
+        var url = new URL("http://localhost:80/getnextnode"),
             params = obj
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         fetch(url)
         .then(response => response.text())
         .then(result => {
+            console.log(result);
             result = JSON.parse(result);
-            setBookId(result.getnextnode[0].bookfrom);
+            var resArr = result.getnextnode;
+            setBookId(resArr[0].bookfrom);            
             setNodeList(result.getnextnode);
         })
         .catch(error => console.log('error', error));
@@ -72,48 +75,15 @@ function MainSwipe(props) {
     },[])
 
     const showNodeList = nodeList.map((card, index) => {
-        console.log("make");
         return (nodeList[index] !== undefined ? <SwiperSlide key={index} onClick={()=>makeNovel(index)} > 
         <CustomCard content = {card.content} writer = {card.writer} ></CustomCard>
         </SwiperSlide > : <></>)
         }
     )
 
-    /* postman */
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = '{"bookfrom":1, "postid":40}';
-    const obj = JSON.parse(raw);
-
-    var url = new URL("http://143.248.75.68:80/getnextnode"),
-        params = obj
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    fetch(url)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-
-    /*
-    var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-    };
-    */
-
-    /*
-    fetch("http://localhost:80/getnextnode", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    */
-    /* postman */
-
     function makeNovel(index) {
         console.log("hello");
-        setBookId(index);
+        setNodeId(nodeList[index].nodeid);
         setNovelList([...novelList,nodeList[index]]);
         setNodeList([]);
     }
@@ -127,9 +97,6 @@ function MainSwipe(props) {
             spaceBetween={50}
             slidesPerView={1}
             centeredSlides
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={swiper => console.log(swiper)
-            }
             > 
                 {showNodeList}
             </Swiper>

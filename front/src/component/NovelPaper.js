@@ -16,8 +16,17 @@ useEffect(()=>{
         arr.push(false);
     }
     setHeart(arr);
-    console.log(arr);
+    console.log(heart);
 },[])
+useEffect(()=>{
+    let arr = new Array();
+    for (var i = 0; i < novelList.length; i++) {
+        arr.push(false);
+    }
+    setHeart(arr);
+    console.log(heart);
+},[novelList])
+
 
     function heartClick(e,index) {
         e.stopPropagation();
