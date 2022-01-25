@@ -55,7 +55,7 @@ function MainSwipe(props) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = '{"bookfrom":1, "postid":0}';
+        var raw = '{"bookfrom":1, "postid":99}';
         const obj = JSON.parse(raw);
 
         var url = new URL("http://localhost:80/getnextnode"),
@@ -71,7 +71,6 @@ function MainSwipe(props) {
             setNodeList(result.getnextnode);
         })
         .catch(error => console.log('error', error));
-        setNodeList([{writer:"jeho",content:"안녕하세요."}]);
     },[])
 
     const showNodeList = nodeList.map((card, index) => {
