@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.css";
 import { Pagination, Typography, Grid } from "@mui/material";
-import RelayNovel from './RelayNovel';
+import PersonalNovel from './PersonalNovel';
+import { set } from "mongoose";
 
 function Paging() {
   const [novelList,setNovelList] =useState([]);
+  const [contentList,setContentList] =useState([]);
   const [state, setState] = useState([false,false,false,false,false,false]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
@@ -22,7 +24,7 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("/categorybook?category=릴레이소설", requestOptions)
+    fetch("http://localhost:80/categorybook?category=개인소설", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);
@@ -33,6 +35,7 @@ function Paging() {
       
     })  
     .catch(error => console.log('error', error));
+    
 },[])
   
  
@@ -47,7 +50,7 @@ function Paging() {
     <div className="App">
         {
             <div>
-                {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
+                {<PersonalNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
                 state={state} setState={setState} page = {page} setPage = {setPage}/>}
             </div>
         }

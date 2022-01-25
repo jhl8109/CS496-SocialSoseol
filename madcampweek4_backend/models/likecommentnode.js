@@ -13,7 +13,7 @@ likecommentnodeschema = mongoose.Schema({
         type: Number
     },
     writer:{
-        type: Number
+        type: String
     }
 })
 
