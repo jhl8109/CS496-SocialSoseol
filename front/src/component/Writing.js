@@ -1,7 +1,7 @@
 import React from 'react';
 import {ToggleButtonGroup, ToggleButton, Grid, Box } from '@mui/material';
 import { makeStyles } from "@mui/styles";
-import AddPaper from './AddPaper';
+import WritePaper from './WritePaper';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,6 +36,7 @@ function Writing(props) {
           return;
         }
         setStatus(newStatus);
+        console.log(newStatus);
       };
 
         
@@ -63,7 +64,7 @@ function Writing(props) {
                     </ToggleButton>
                 </ToggleButtonGroup>
           </Box>
-          <AddPaper/>
+          <WritePaper/>
             
           
       </div>

@@ -27,6 +27,7 @@ function RelayNovel(props) {
       console.log(a);
   };
     const showNovelList = novelList.map( (novel, index) => {
+        console.log(novel);
         return (novelList[index] !== undefined ?
                 <div key={index}
                 className={clsx('section-content', {
