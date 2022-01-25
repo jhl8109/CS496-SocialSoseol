@@ -25,6 +25,8 @@ function RelayNovel(props) {
 
   function gotoItem (a) {
       console.log(a);
+      console.log(a.bookid);
+      window.location.href = `relay/novel/${a.bookid}`;
   };
     const showNovelList = novelList.map( (novel, index) => {
         console.log(novel);

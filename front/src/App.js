@@ -27,8 +27,8 @@ function App() {
 =======
         <Route path="/novel"  element={<Paging/>}/>
         <Route path="/poem"  element={<PagingPoem/>}/>
-        <Route path='/relay/novel' element={<Novel/>}/>
-        <Route path='/relay/poem' />
+        <Route path='/relay/novel/:id' element={<Novel/>}/>
+        <Route path='/relay/poem/:id' />
         {/* <Route path='/poem' element={<Poem/>}/> */}
         <Route path='/write' element={<Writing/>}/>
 >>>>>>> aeed59843410c9fd8563636c4dd36a0648670f2c

@@ -22,7 +22,7 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("/categorybook?category=릴레이소설", requestOptions)
+    fetch("http://localhost:80/categorybook?category=릴레이소설", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);

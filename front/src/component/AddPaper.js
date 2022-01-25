@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import ToggleButton from 'react-toggle-button'
 
 function AddPaper(props) {
+  const {id} = props;
   const paperStyle={padding : 20, height:'400px',width:"1000px", margin: "20px auto"};
   const btnStyle = {margin:'8px 0'}
   const textStyle = {margin:'8px 0'}
@@ -21,9 +22,10 @@ function AddPaper(props) {
     .then(response => response.text())
     .then(result => {
       var res = JSON.parse(result);
-      loginid = res.loginid;
+      console.log(res);
+      /*loginid = res.loginid;
       nickname = res.nickname;
-      userlevel = res.userlevel;
+      userlevel = res.userlevel;*/
     })
     .catch(error => console.log('error', error));
   },[])
@@ -53,27 +55,33 @@ function AddPaper(props) {
     }
 
     let btnSubmit = (e) => {
+      console.log(novelList[novelList.length-1].nodeid);
       e.preventDefault();
       console.log(textValue);
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      var raw = JSON.stringify({
-        "bookfrom": 1, // props로 book에서 클릭시 받아오기
-        "writer": nickname,
-        "content": textValue // db에 보낼 텍스트
-      });
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
+     
 
       if (toggle === true) { // 노드에 추가(세로)
         
       } else { // 브랜치에 추가 (가로)
+
+        var raw = JSON.stringify({
+          "bookfrom": id, // props로 book에서 클릭시 받아오기
+          "postid" : novelList[novelList.length-1].nodeid,
+          "writer": nickname,
+          "content": textValue // db에 보낼 텍스트
+        });
+        
+  
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
         setNodeList([...nodeList,{"writer":nickname, "content": textValue}]);
         fetch("/node", requestOptions)
         .then(response => response.text())
