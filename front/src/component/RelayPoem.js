@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 import { useState } from 'react'
-import './RelayNovel.css'
+import './RelayPoem.css'
 import {AiOutlineHeart, AiTwotoneHeart} from 'react-icons/ai';
 
-function RelayNovel(props) {
+function RelayPoem(props) {
     const {page, setPage} = props;
     const {heart,setHeart} = props;
   const {state, setState} = props;
 //   const [state, setState] = useState([false,false,false,false,false,false]);
-  const {novelList,setNovelList} = props;
+  const {poemList,setPoemList} = props;
 
   const itemsPerPage = 6;
 
@@ -26,22 +26,22 @@ function RelayNovel(props) {
   function gotoItem (a) {
       console.log(a);
   };
-    const showNovelList = novelList.map( (novel, index) => {
-        return (novelList[index] !== undefined ?
+    const showPoemList = poemList.map( (poem, index) => {
+        return (poemList[index] !== undefined ?
                 <div key={index}
                 className={clsx('section-content', {
                     'is-active': state[index],
                 })}
                 >
-                <div className="item" onClick={() => gotoItem(novelList[index])}>
+                <div className="item" onClick={() => gotoItem(poemList[index])}>
                     <div className="item__front">
                     <img
                         className="item__media"
-                        src = {`/image/${novel.genre}${novel.bookid%3}.jpg`}
+                        src = {`/image/${poem.genre}${poem.bookid%3}.jpg`}
                         alt=""
                     />
                     <h2 className="item__title">
-                        {novel.bookname}
+                        {poem.bookname}
                     </h2>
                     <h3 className="item__likes">
                         <img
@@ -49,7 +49,7 @@ function RelayNovel(props) {
                             src = {`/image/heart.png`}
                             alt=""
                         />
-                        {novel.likes}
+                        {poem.likes}
                     </h3>
                     <h3 className="item__view">
                         <img
@@ -57,16 +57,16 @@ function RelayNovel(props) {
                             src = {`/image/search.png`}
                             alt=""
                         />
-                        {novel.view}
+                        {poem.view}
                     </h3>
                     </div>
 
                     <div className="item__back">
                     <h5 className="item__subtitle">
-                        {novel.writer}
+                        {poem.writer}
                     </h5>
                     <p className="item__desc">
-                        {novel.content}
+                        {poem.content}
                     </p>
                     </div>
 
@@ -87,11 +87,11 @@ function RelayNovel(props) {
     )
   return(
     <div className='grid-container'>
-        {showNovelList}
+        {showPoemList}
     </div>
   )
 }
 
 
 
-export default RelayNovel
+export default RelayPoem

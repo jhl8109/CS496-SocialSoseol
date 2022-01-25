@@ -6,6 +6,7 @@ import Navbar from './component/Navbar';
 import PostList from './component/table/PostList';
 import Poem from './component/Poem';
 import Paging from './component/Pagination';
+import PagingPoem from './component/PaginationPoem';
 
 function App() {
   return ( 
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<Sign />} />
         <Route path="/novel" element={<Novel/>} />
         <Route path='/relay/novel' element={<Paging/>}/>
-        <Route path='/poem' element={<Poem/>}/>
+        <Route path='/relay/poem' element={<PagingPoem/>}/>
       </Routes>
     </BrowserRouter>
   )

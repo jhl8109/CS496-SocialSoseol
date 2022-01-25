@@ -17,6 +17,9 @@ const bookSchema = mongoose.Schema({
     category:{
         type: String
     },
+    genre:{
+        type: String
+    },
     view:{
         type: Number,
         default: 0
