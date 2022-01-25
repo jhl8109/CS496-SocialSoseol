@@ -1,5 +1,7 @@
 .App {
     font-family: sans-serif;
+    display: flex;
+    position: relative;
   }
 
 .Button{

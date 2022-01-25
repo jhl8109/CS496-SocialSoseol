@@ -47,24 +47,23 @@ function Paging() {
   }
 
   return (
-    <div className="App">
-        {
-            <div>
-                {<RelayPoem poemList={poemList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setPoemList={setPoemList} 
-                state={state} setState={setState} page = {page} setPage = {setPage}/>}
-            </div>
-        }
-      <Pagination
+    <><div className="App">
+      {<div>
+        {<RelayPoem poemList={poemList.slice(Number((page - 1) * itemsPerPage), Number(itemsPerPage * Number(page)))} setPoemList={setPoemList}
+          state={state} setState={setState} page={page} setPage={setPage} />}
+      </div>}
+    </div>
+    <Pagination
           style={{display:'flex',justifyContent:'center',alignItems:'center'}}
           count={
             Math.ceil(poemList.length / itemsPerPage)
           }
           onChange={handleChangePage}
         />
-        <div className="Button">
-            <button>글쓰기</button>
-        </div> 
-    </div>
+    <div className="Button">
+        <button>글쓰기</button>
+    </div></>
+
   );
 }
 

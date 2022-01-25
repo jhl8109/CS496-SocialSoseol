@@ -13,8 +13,8 @@ function App() {
   return ( 
     <BrowserRouter>
       <Navbar/>
-      <Routes>  
-        <Route path="/" element={<Sign />} />
+      <Routes>
+      <Route path="/" element={<Sign />} />
         <Route path="/relay/novel/:id" element={<Novel/>} />
         <Route path='/relay/poem/:id' />
         <Route path='/novel' element={<Paging/>}/>
@@ -22,6 +22,7 @@ function App() {
         <Route path='/personal/novel' element={<PagingPersonalNovel/>}/>
         <Route path='/personal/poem' element={<PagingPersonalPoem/>}/>
         <Route path='/write/:category' element={<Writing/>}/>
+        <Route path='/write' element={<Writing/>}/>
       </Routes>
     </BrowserRouter>
   )
