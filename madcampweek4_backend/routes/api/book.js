@@ -140,7 +140,6 @@ router.put(
     "/viewbook",
     async (req, res) => {
         try {
-
             let book = await Book.findOne({ bookid:req.query.bookid})
 
             if (!book) {

@@ -25,6 +25,17 @@ function RelayNovel(props) {
   };
 
   function gotoItem (a) {
+    var requestOptions = {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"}
+        };
+        var obj = new Object();
+        fetch("/viewbook?bookid="+a.bookid, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => console.log('error', error));
     console.log(a.bookid);
     window.location.href = `relay/novel/${a.bookid}`;
   };
