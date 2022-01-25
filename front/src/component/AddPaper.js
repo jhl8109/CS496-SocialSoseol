@@ -59,7 +59,7 @@ function AddPaper(props) {
         redirect: 'follow'
       };
 
-      fetch("http://143.248.75.68:80/node", requestOptions)
+      fetch("/node", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
