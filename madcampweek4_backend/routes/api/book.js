@@ -7,7 +7,7 @@ router.post(
     "/book",
     async (req, res) => {
 
-        const {bookid, bookname, writer, category, view, likes,content} = req.body;
+        const {bookid, bookname, writer, category, genre, view, likes,content} = req.body;
 
         try {
             let book = await Book.findOne({ bookid });
@@ -22,7 +22,8 @@ router.post(
                 bookid, 
                 bookname, 
                 writer, 
-                category, 
+                category,
+                genre,
                 view,
                 likes,
                 content
