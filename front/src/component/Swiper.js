@@ -187,7 +187,7 @@ function MainSwipe(props) {
             else setNodeList([]);
         })
         .catch(error => console.log('error', error));
-    },[])
+    }
 
     
 

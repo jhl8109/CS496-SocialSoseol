@@ -42,6 +42,7 @@ function CustomCard(props) {
 }
 
 function Comment(props) {
+  const [auth,setAuth] = useState({});
   const cardStyle = {'margin' : '10px', 'width' : '600px'};
   const btnStyle = {margin:'8px 0'}
   const textStyle = {margin:'8px 0'};
@@ -50,28 +51,35 @@ function Comment(props) {
   const paperStyle={padding : 20, height:'400px',width:"1000px", margin: "20px auto"};
   var writer;
   useEffect(()=>{
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = `{"bookfrom":1}`;
-    const obj = JSON.parse(raw);
-
-    var url = new URL("http://localhost:80/getcommentbook"),
-      params = obj
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    fetch(url)
-    .then(response => response.text())
-    .then(result => {
-      console.log(result)
-      var res = JSON.parse(result);
-      var resArr = res.getcommentbook;
-      console.log(resArr);
-      console.log(resArr[0].writer);
-      setCommentList(resArr);
-    })
-    .catch(error => console.log('error', error));
+    fetch("/auth", {credentials : 'include'})
+            .then(response => response.text())
+            .then(result => {
+                var res = JSON.parse(result);
+                console.log(res);
+                setAuth(res);
+              })
+            .catch(error => console.log('error', error));
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+  
+      var raw = `{"bookfrom":${props.id}}`;
+      const obj = JSON.parse(raw);
+  
+      var url = new URL("http://localhost:80/getcommentbook"),
+        params = obj
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+      fetch(url)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result)
+        var res = JSON.parse(result);
+        var resArr = res.getcommentbook;
+        console.log(resArr);
+        console.log(resArr[0].writer);
+        setCommentList(resArr);
+      })
+      .catch(error => console.log('error', error));         
   },[])
-
   const useStyles = makeStyles(() => ({
     input1: {
       fontFamily: "title111",
@@ -103,8 +111,8 @@ function Comment(props) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "writer":"minwoo",
-      "bookfrom":1,
+      "writer":auth.nickname,
+      "bookfrom":props.id,
       "content":commentValue
     });
 
