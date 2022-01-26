@@ -45,7 +45,7 @@ function Paging() {
   }
 
   return (
-    <><div className="App">
+    <><div className="App" style={{justifyContent:'center',alignItems:'center'}}>
         {
             <div>
                 {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
