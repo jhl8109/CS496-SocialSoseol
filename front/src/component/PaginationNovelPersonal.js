@@ -38,7 +38,9 @@ function Paging() {
     
 },[])
   
- 
+const writingPage = () => {
+  window.location.href = "/write/개인소설"
+}
 
 
   function handleChangePage(event, value) {
@@ -47,7 +49,7 @@ function Paging() {
   }
 
   return (
-    <><div className="App">
+    <><div className="App"  style={{justifyContent:'center',alignItems:'center'}}>
         {
             <div>
                 {<PersonalNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
@@ -62,9 +64,9 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-      <div className="Button">
-        <button>글쓰기</button>
-      </div></>
+      <div>
+        <button className = "Button" onClick={writingPage} >글쓰기</button>
+        </div></> 
     
 
   );

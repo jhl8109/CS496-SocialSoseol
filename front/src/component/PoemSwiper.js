@@ -145,9 +145,9 @@ function CustomCard(props) {
     )
 }
 
-function MainSwipe(props) {
+function PoemSwipe(props) {
     const {id} = props;
-    const {novelList, setNovelList} = props;
+    const {poemList, setPoemList} = props;
     const {nodeList,setNodeList} = props;
     const cardStyle = {'margin' : '10px', 'width' : '600px'};
 
@@ -161,10 +161,10 @@ function MainSwipe(props) {
     }, [nodeList])
 
     useEffect(()=>{
-        console.log(novelList);
-        if(novelList.length > 0)
+        console.log(poemList);
+        if(poemList.length > 0)
             getNodeList();
-    },[novelList])
+    },[poemList])
 
     const getNodeList = () => {
        
@@ -172,7 +172,7 @@ function MainSwipe(props) {
         myHeaders.append("Content-Type", "application/json");
 
         var tmp = 0;
-        if (novelList.length != 0) tmp = novelList[novelList.length-1].nodeid;
+        if (poemList.length != 0) tmp = poemList[poemList.length-1].nodeid;
 
         var raw = `{"bookfrom":${id}, "postid":${tmp}}`;
         const obj = JSON.parse(raw);
@@ -194,22 +194,22 @@ function MainSwipe(props) {
     
 
     const showNodeList = nodeList.map((card, index) => {
-        return (nodeList[index] !== undefined ? <SwiperSlide key={index} onClick={()=>makeNovel(index)} > 
+        return (nodeList[index] !== undefined ? <SwiperSlide key={index} onClick={()=>makePoem(index)} > 
         <CustomCard index = {index} nodeList = {nodeList} setNodeList = {setNodeList}></CustomCard>
         </SwiperSlide > : <></>)
         }
     )
 
-    function makeNovel(index) {
+    function makePoem(index) {
 
         var arr = new Array();
-        for (var i = 0; i < novelList.length; i++) {
-            arr.push(novelList[i]);
+        for (var i = 0; i < poemList.length; i++) {
+            arr.push(poemList[i]);
         }
 
         arr.push(nodeList[index]);
         console.log(arr);
-        setNovelList(arr);
+        setPoemList(arr);
         setNodeList(new Array());
         // getNodeList(arr);
     }
@@ -230,4 +230,4 @@ function MainSwipe(props) {
       );
 };
 
-export default MainSwipe;
+export default PoemSwipe;

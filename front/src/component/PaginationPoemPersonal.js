@@ -24,7 +24,7 @@ function Paging() {
     };
     var obj = new Object();
     
-    fetch("http://localhost:80/categorybook?category=릴레이시", requestOptions)
+    fetch("http://localhost:80/categorybook?category=개인시", requestOptions)
     .then(response => response.text())
     .then(result => {
       obj = JSON.parse(result);
@@ -39,7 +39,9 @@ function Paging() {
 },[])
   
  
-
+const writingPage = () => {
+  window.location.href = "/write/개인시"
+}
 
   function handleChangePage(event, value) {
     setPage(value);
@@ -47,7 +49,7 @@ function Paging() {
   }
 
   return (
-    <><div className="App">
+    <><div className="App"  style={{justifyContent:'center',alignItems:'center'}}>
         {
             <div>
                 {<PersonalPoem poemList={poemList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setPoemList={setPoemList} 
@@ -62,10 +64,11 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-        <div className="Button">
-            <button>글쓰기</button>
-        </div></>
+        <div>
+        <button className = "Button" onClick={writingPage} >글쓰기</button>
+        </div></> 
+
   );
 }
 
-export default Paging
+export default Paging;

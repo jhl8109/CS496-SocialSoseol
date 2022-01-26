@@ -11,12 +11,12 @@ function Novel(props) {
     const [novelList,setNovelList] = useState([]);
     const [nodeList, setNodeList] = useState([]);
     return (
-        <div>
+        <div style={{display:'flex', justifyContent:"center", alignItems:"center"}}>
             <div style = {{display:"flex", flexDirection:"column", alignItems:"center"}} elevation={3}>
                 <NovelPaper novelList = {novelList} setNovelList = {setNovelList} id = {id}/>
                 <MainSwipe novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
                 <AddPaper novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
-                <Twittler/>
+                <Twittler id = {id}/>
             </div>
         </div>
         
