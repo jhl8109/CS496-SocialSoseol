@@ -69,7 +69,11 @@ function MainSwipe(props) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
+<<<<<<< HEAD
         var raw = `{"bookfrom":${id}, "postid":${tmp}}`;
+=======
+        var raw = '{"bookfrom":1, "postid":99}';
+>>>>>>> a772292622e54782f34458149bfa0519f439be3b
         const obj = JSON.parse(raw);
 
         var url = new URL("http://localhost:80/getnextnode"),
@@ -85,7 +89,7 @@ function MainSwipe(props) {
             setNodeList(res.getnextnode);
         })
         .catch(error => console.log('error', error));
-    }
+    },[])
 
     const showNodeList = nodeList.map((card, index) => {
         return (nodeList[index] !== undefined ? <SwiperSlide key={index} onClick={()=>makeNovel(index)} > 
