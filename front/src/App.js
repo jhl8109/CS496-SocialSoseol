@@ -3,6 +3,7 @@ import Novel from './component/Novel';
 import Sign from './component/Sign';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import Navbar from './component/Navbar';
+import Poem from './component/Poem';
 import Paging from './component/Pagination';
 import PagingPoem from './component/PaginationPoem';
 import PagingPersonalNovel from './component/PaginationNovelPersonal';

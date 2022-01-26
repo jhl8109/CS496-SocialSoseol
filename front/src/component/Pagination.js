@@ -62,7 +62,7 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-        <div>
+     <div>
         <button className = "Button" onClick={writingPage} >글쓰기</button>
         </div> 
     </>

@@ -170,10 +170,8 @@ function MainSwipe(props) {
        
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
         var tmp = 0;
         if (novelList.length != 0) tmp = novelList[novelList.length-1].nodeid;
-
         var raw = `{"bookfrom":${id}, "postid":${tmp}}`;
         const obj = JSON.parse(raw);
 
@@ -189,7 +187,7 @@ function MainSwipe(props) {
             else setNodeList([]);
         })
         .catch(error => console.log('error', error));
-    }
+    },[])
 
     
 
