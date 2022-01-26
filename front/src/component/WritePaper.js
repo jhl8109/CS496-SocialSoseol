@@ -62,7 +62,7 @@ function WritePaper(props) {
         "genre": status, 
         "content": textValue 
       });
-
+    console.log(raw);
     var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -105,8 +105,25 @@ function WritePaper(props) {
         console.log(result)
         var res = JSON.parse(result);
         //setNodeList([...nodeList,res]);
+        
         setTitleValue('');
-        setTextValue('')
+        setTextValue('');
+        var next;
+        switch(category) {
+          case "릴레이소설" :
+            next = '/novel'
+            break;
+          case "릴레이시" :
+            next = '/poem'
+            break;  
+          case "개인소설" :
+            next = '/personal/poem'
+            break;  
+          case "개인시" :
+            next = '/personal/novel'
+            break;  
+        }
+        window.location.href = next;
       })
       .catch(error => console.log('error', error));
     }

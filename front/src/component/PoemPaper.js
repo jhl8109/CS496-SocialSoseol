@@ -2,12 +2,12 @@ import React, {useState,useEffect} from "react";
 import {Typography, CardHeader,CardContent, IconButton,Accordion, AccordionSummary, AccordionDetails} from '@mui/material';
 import {AiOutlineHeart, AiTwotoneHeart} from 'react-icons/ai';
 
-function NovelPaper(props) {
+function PoemPaper(props) {
     const [auth, setAuth] = useState({});
     const [bookHeart,setBookHeart] = useState();
     const {id} = props;
     const [heart,setHeart] = useState([]);
-    const {novelList, setNovelList} = props;
+    const {poemList, setPoemList} = props;
     const cardStyle = {'margin' : '10px', 'width' : '1000px', 'backgroundImage':'url(https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99738F355C6D05C42A)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'};
 
 
@@ -35,10 +35,10 @@ useEffect(()=>{
         /************************************/ 
 },[])
 useEffect(()=>{
-    console.log("novelList : "+novelList);
+    console.log("poemList : "+poemList);
     let arr = new Array();
-    for (var i = 0; i < novelList.length; i++) {
-        fetch("/getlikenode?nodefrom="+novelList[i].nodeid+"&writer="+auth.nickname)
+    for (var i = 0; i < poemList.length; i++) {
+        fetch("/getlikenode?nodefrom="+poemList[i].nodeid+"&writer="+auth.nickname)
         .then(response => response.text())
         .then(result => {
             var res = JSON.parse(result);
@@ -49,7 +49,7 @@ useEffect(()=>{
         })
         .catch(error => console.log('error', error));  
     }
-},[novelList])
+},[poemList])
 
 
     function heartClick(e,index) {
@@ -65,7 +65,7 @@ useEffect(()=>{
                         redirect: 'follow'
                       };
                       arr.push(!heart[i]);
-                      fetch("/dislikenode?nodefrom="+novelList[i].nodeid+"&writer="+auth.nickname, requestOptions)
+                      fetch("/dislikenode?nodefrom="+poemList[i].nodeid+"&writer="+auth.nickname, requestOptions)
                       .then(response => response.text())
                       .then(result => {
                         console.log(result)
@@ -73,15 +73,15 @@ useEffect(()=>{
                         setHeart(arr);
                         let arr2 = new Array();
                         var obj = new Object();
-                        for (var i = 0; i < novelList.length; i++) {
-                            obj = novelList[i];
+                        for (var i = 0; i < poemList.length; i++) {
+                            obj = poemList[i];
                             if (i == index) {
                                 obj.likes = obj.likes-1;
                             }
                             arr2.push(obj);
                         }
-                        setNovelList(arr2);
-                        console.log(novelList);
+                        setPoemList(arr2);
+                        console.log(poemList);
                       })
                       .catch(error => console.log('error', error));              
                     
@@ -89,7 +89,7 @@ useEffect(()=>{
                     var myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/json");
                     var raw = JSON.stringify({
-                        "nodefrom": novelList[i].nodeid, // props로 book에서 클릭시 받아오기
+                        "nodefrom": poemList[i].nodeid, // props로 book에서 클릭시 받아오기
                         "writer" : auth.nickname
                       });
               
@@ -108,14 +108,14 @@ useEffect(()=>{
                         setHeart(arr);
                         let arr2 = new Array();
                         var obj = new Object();
-                        for (var i = 0; i < novelList.length; i++) {
-                            obj = novelList[i];
+                        for (var i = 0; i < poemList.length; i++) {
+                            obj = poemList[i];
                             if (i == index) {
                                 obj.likes = obj.likes+1;
                             }
                             arr2.push(obj);
                         }
-                        setNovelList(arr2);
+                        setPoemList(arr2);
                       })
                       .catch(error => console.log('error', error));    
                 }
@@ -170,11 +170,11 @@ useEffect(()=>{
         }
             
     }
-    const showNovelList = novelList.map( (card, index) => {
-        console.log(novelList[index]);
+    const showPoemList = poemList.map( (card, index) => {
+        console.log(poemList[index]);
         console.log(heart);
         console.log(heart[index]);
-        return (novelList[index] !== undefined ?
+        return (poemList[index] !== undefined ?
             <div key={index}>
                 <Accordion style = {cardStyle}>
                     <AccordionSummary title="Title 1">
@@ -199,10 +199,10 @@ useEffect(()=>{
                 {bookHeart === false ?  <AiOutlineHeart/>: <AiTwotoneHeart color="red"/>}
                 <Typography variant="h5" style={{fontWeight : "bold"}}>likes</Typography>
             </IconButton> 
-            {showNovelList}  
+            {showPoemList}  
         </div>
     )
 }
 
 
-export default NovelPaper;
+export default PoemPaper;

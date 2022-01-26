@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.css";
-import { Pagination, Typography, Grid } from "@mui/material";
+import { Pagination,Button} from "@mui/material";
 import RelayNovel from './RelayNovel';
 
 function Paging() {
@@ -37,7 +37,7 @@ function Paging() {
 },[])
   
  const writingPage = () => {
-   window.location.href = "/write/novel"
+   window.location.href = "/write/릴레이소설"
  }
 
 
@@ -47,7 +47,7 @@ function Paging() {
   }
 
   return (
-    <><div className="App">
+    <><div className="App" style={{justifyContent:'center',alignItems:'center'}}>
         {
             <div>
                 {<RelayNovel novelList={novelList.slice(Number((page - 1) * itemsPerPage),Number(itemsPerPage * Number(page)))} setNovelList={setNovelList} 
@@ -62,12 +62,10 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-      <div>
-        <button onClick={writingPage}>글쓰기</button>
-      </div>
+     <div>
+        <button className = "Button" onClick={writingPage} >글쓰기</button>
+        </div> 
     </>
-    
-
   );
 }
 

@@ -37,7 +37,7 @@ function RelayNovel(props) {
         })
         .catch(error => console.log('error', error));
     console.log(a.bookid);
-    window.location.href = `relay/novel/${a.bookid}`;
+    window.location.href = `novel/${a.bookid}`;
   };
     const showNovelList = novelList.map( (novel, index) => {
         return (novelList[index] !== undefined ?
