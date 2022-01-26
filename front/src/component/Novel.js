@@ -2,7 +2,7 @@ import MainSwipe from './Swiper';
 import NovelPaper from './NovelPaper';
 import AddPaper from './AddPaper';
 import React, {useState} from "react";
-import Twittler from './comment_react'
+import Comment from './addComment'
 import {useParams} from 'react-router-dom';
 
 
@@ -16,7 +16,7 @@ function Novel(props) {
                 <NovelPaper novelList = {novelList} setNovelList = {setNovelList} id = {id}/>
                 <MainSwipe novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
                 <AddPaper novelList = {novelList} setNovelList = {setNovelList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
-                <Twittler/>
+                <Comment id = {id}/>
             </div>
         </div>
         
