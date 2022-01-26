@@ -1,39 +1,26 @@
-import React from 'react';
-import {Accordion, AccordionSummary, AccordionDetails, Typography} from '@mui/material';
+import PoemSwipe from './PoemSwiper';
+import PoemPaper from './PoemPaper';
+import AddPoemPaper from './AddPoemPaper';
+import React, {useState} from "react";
+import Twittler from './comment_react'
+import {useParams} from 'react-router-dom';
+
 
 function Poem(props) {
-  return (
-    <div>
-      <h1>React Accordion</h1>
-      <Accordion atomic={true}>
-        <AccordionSummary title="Title 1">
-        <Typography variant='h5'>Collapsible Group Item #1</Typography>
-        </AccordionSummary>  
-        <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-          sit amet blandit leo lobortis eget.
-        </AccordionDetails>
-      </Accordion>
-      <Accordion atomic={true}>
-        <AccordionSummary title="Title 1">
-        <Typography variant='h5'>Collapsible Group Item #1</Typography>
-        </AccordionSummary>  
-        <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-          sit amet blandit leo lobortis eget.
-        </AccordionDetails>
-      </Accordion>
-      <Accordion atomic={true}>
-        <AccordionSummary title="Title 1">
-        <Typography variant='h5'>Collapsible Group Item #1</Typography>
-        </AccordionSummary>  
-        <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-          sit amet blandit leo lobortis eget.
-        </AccordionDetails>
-      </Accordion>
-  </div>
-  )
-};
+    let {id}= useParams();
+    const [poemList,setPoemList] = useState([]);
+    const [nodeList, setNodeList] = useState([]);
+    return (
+        <div style={{display:'flex', justifyContent:"center", alignItems:"center"}}>
+            <div style = {{display:"flex", flexDirection:"column", alignItems:"center"}} elevation={3}>
+                <PoemPaper poemList = {poemList} setPoemList = {setPoemList} id = {id}/>
+                <PoemSwipe poemList = {poemList} setPoemList = {setPoemList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
+                <AddPoemPaper poemList = {poemList} setPoemList = {setPoemList} nodeList = {nodeList} setNodeList = {setNodeList} id = {id}/>
+                <Twittler id = {id}/>
+            </div>
+        </div>
+        
+    )
+}
 
 export default Poem;

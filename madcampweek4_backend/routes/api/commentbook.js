@@ -37,12 +37,12 @@ router.post(
     }
 );
 
-router.post(
+router.get(
     "/getcommentbook",
     async (req, res) => {
 
         try {
-            let getcommentbook = await Commentbook.find({ bookfrom:req.body.bookfrom });
+            let getcommentbook = await Commentbook.find({ bookfrom:req.query.bookfrom });
 
             if (getcommentbook.length==0) {
                 return res

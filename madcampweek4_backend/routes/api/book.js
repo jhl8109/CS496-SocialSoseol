@@ -31,7 +31,7 @@ router.post(
 
             await book.save();
 
-            res.send("Success");
+            res.send(book);
             console.log("success in console");
 
         } catch (error) {
@@ -129,6 +129,34 @@ router.get(
             .json({
                 content:getfirstnode.content
             });
+
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Server Error");
+        }
+    }
+);
+router.put(
+    "/viewbook",
+    async (req, res) => {
+        try {
+            let book = await Book.findOne({ bookid:req.query.bookid})
+
+            if (!book) {
+                return res
+                .status(400)
+                .json({ errors: [{ msg: "No book" }] });
+            }
+
+            //update book view
+            var view = book.view;
+            view ++;
+            book.view = view;
+
+            await book.save();
+
+            res.send("Success");
+            console.log("success in console");
 
         } catch (error) {
             console.error(error.message);

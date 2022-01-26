@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Pagination.css";
-import { Pagination, Typography, Grid } from "@mui/material";
+import { Pagination,Button} from "@mui/material";
 import RelayNovel from './RelayNovel';
 
 function Paging() {
@@ -36,7 +36,9 @@ function Paging() {
     .catch(error => console.log('error', error));
 },[])
   
- 
+ const writingPage = () => {
+   window.location.href = "/write/릴레이소설"
+ }
 
 
   function handleChangePage(event, value) {
@@ -60,12 +62,10 @@ function Paging() {
           }
           onChange={handleChangePage}
         />
-      <div className="Button">
-        <button>글쓰기</button>
-      </div></>
-
-    
-
+     <div>
+        <button className = "Button" onClick={writingPage} >글쓰기</button>
+        </div> 
+    </>
   );
 }
 

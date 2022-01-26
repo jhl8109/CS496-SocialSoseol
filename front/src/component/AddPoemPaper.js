@@ -3,14 +3,14 @@ import { Paper, Grid, Typography, TextField,Button, Switch} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import ToggleButton from 'react-toggle-button'
 
-function AddPaper(props) {
+function AddPoemPaper(props) {
   const {id} = props;
   const paperStyle={padding : 20, height:'400px',width:"1000px", margin: "20px auto"};
   const btnStyle = {margin:'8px 0'}
   const textStyle = {margin:'8px 0'}
   const [textValue, setTextValue] = useState('');
   const textProps = {maxLength: "300", step: "1"};
-  const {novelList,setNovelList} = props
+  const {poemList,setPoemList} = props
   const {nodeList,setNodeList} = props
   const [toggle, setToggle] = useState(true)
   const [disabled, setDisabled] = useState(true);
@@ -62,7 +62,7 @@ function AddPaper(props) {
 
       if (toggle === true) { // 노드에 추가(세로)
         var postid = 0;
-        if (novelList.length !== 0) postid = novelList[novelList.length-1].nodeid;
+        if (poemList.length !== 0) postid = poemList[poemList.length-1].nodeid;
         var raw = JSON.stringify({
           "bookfrom": id, // props로 book에서 클릭시 받아오기
           "postid" : postid,
@@ -142,4 +142,4 @@ function AddPaper(props) {
       );
 };
 
-export default AddPaper;
+export default AddPoemPaper;
