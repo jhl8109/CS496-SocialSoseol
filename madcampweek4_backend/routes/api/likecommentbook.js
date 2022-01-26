@@ -37,7 +37,7 @@ router.post(
             await likecommentbook.save();
             await commentbook.save();
 
-            res.send("Success");
+            res.send(commentbook);
             console.log("success in console");
 
         } catch (error) {

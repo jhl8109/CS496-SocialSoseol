@@ -8,6 +8,7 @@ import PagingPoem from './component/PaginationPoem';
 import PagingPersonalNovel from './component/PaginationNovelPersonal';
 import PagingPersonalPoem from './component/PaginationPoemPersonal';
 import Writing from './component/Writing';
+import Poem from './component/Poem';
 
 function App() {
   return ( 
@@ -15,14 +16,13 @@ function App() {
       <Navbar/>
       <Routes>
       <Route path="/" element={<Sign />} />
-        <Route path="/relay/novel/:id" element={<Novel/>} />
-        <Route path='/relay/poem/:id' />
+        <Route path="/novel/:id" element={<Novel/>} />
+        <Route path='/poem/:id' element={<Poem/>}/>
         <Route path='/novel' element={<Paging/>}/>
         <Route path='/poem' element={<PagingPoem/>}/>
         <Route path='/personal/novel' element={<PagingPersonalNovel/>}/>
         <Route path='/personal/poem' element={<PagingPersonalPoem/>}/>
         <Route path='/write/:category' element={<Writing/>}/>
-        <Route path='/write' element={<Writing/>}/>
       </Routes>
     </BrowserRouter>
   )
