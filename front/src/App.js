@@ -9,7 +9,7 @@ import PagingPoem from './component/PaginationPoem';
 import PagingPersonalNovel from './component/PaginationNovelPersonal';
 import PagingPersonalPoem from './component/PaginationPoemPersonal';
 import Writing from './component/Writing';
-import Poem from './component/Poem';
+import Example from './component/example';
 
 function App() {
   return ( 
@@ -21,14 +21,14 @@ function App() {
         <Route path='/poem/:id' element={<Poem/>}/>
         <Route path='/novel' element={<Paging/>}/>
         <Route path='/poem' element={<PagingPoem/>}/>
-        <Route path='/personal/novel' element={<PagingPersonalNovel/>}/>
+        <Route path='/personal/novel' element={<PagingPersonalNovel/>}/> 
         <Route path='/personal/poem' element={<PagingPersonalPoem/>}/>
         <Route path='/write/:category' element={<Writing/>}/>
+        <Route path='/write' element={<Writing/>}/>
+        <Route path='/About' element={<Example/>}/>
       </Routes>
     </BrowserRouter>
   )
-
-
 }
 
 export default App;
