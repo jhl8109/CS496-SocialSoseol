@@ -9,7 +9,6 @@ import PagingPoem from './component/PaginationPoem';
 import PagingPersonalNovel from './component/PaginationNovelPersonal';
 import PagingPersonalPoem from './component/PaginationPoemPersonal';
 import Writing from './component/Writing';
-import Poem from './component/Poem';
 
 function App() {
   return ( 

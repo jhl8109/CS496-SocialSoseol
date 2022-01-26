@@ -10,7 +10,7 @@ const commentbookSchema = mongoose.Schema({
         type: Number
     },
     writer:{
-        type: Number
+        type: String
     },
     bookfrom:{
         type: Number,
